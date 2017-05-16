@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>AppUI_Profile</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet prefetch' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/6035/grid.css'>
+<link rel='stylesheet prefetch' href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/6035/icomoon-scrtpxls.css'>
+
+      <style>
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300);
+html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+#cont:target > menu-fixed {
+  width: 10px;
+  background: #111;
+  transition: all 0.3s;
+}
+#cont:target > menu-fixed > a .material-icons.back {
+  display: none;
+}
+#cont:target > menu-fixed > .menu li {
+  text-align: center;
+  width: 5%;
+}
+#cont:target > menu-fixed > .menu li > p {
+  display: none;
+}
+
+#menu-fixed {
+  width: 40px;
+  z-index: 2;
+  height: 100%;
+  background: #FAFAFA;
+  position: fixed;
+  transition: all 0.2s;
+  box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.19), 8px 0px 10px rgba(0, 0, 0, 0.23);
+  text-align: center;
+  overflow: auto;
+}
+#menu-fixed .material-icons.back {
+  display: none;
+  color: #6d6d6d;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 36px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+#menu-fixed .material-icons.back:hover {
+  color: #ACACA9;
+  transition: color 0.2s;
+}
+#menu-fixed:target {
+  width: 280px;
+  background: #FAFAFA;
+  transition: all 0.3s ease-out;
+}
+#menu-fixed:target > .notes {
+  transition: all 0.2s;
+  z-index: 0;
+  opacity: 80%;
+}
+#menu-fixed:target > a .material-icons.back {
+  display: block;
+}
+#menu-fixed:target > a > .logo {
+  width: 60%;
+  height: 47px;
+  margin: auto;
+}
+#menu-fixed:target > a > .logo > span {
+  display: none;
+}
+#menu-fixed:target > a > .logo > p {
+  display: block;
+}
+#menu-fixed:target > .menu li {
+  text-align: left;
+  width: 40%;
+}
+#menu-fixed:target > .menu li:hover::after {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(38, 166, 154, 0.1);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 4px;
+}
+#menu-fixed:target > .menu li:hover > p {
+  color: white;
+}
+#menu-fixed:target > .menu li > p {
+  display: inline-block;
+}
+#menu-fixed .logo {
+  width: 100%;
+  height: 70px;
+  position: relative;
+  cursor: pointer;
+}
+#menu-fixed .logo p {
+  display: none;
+  color: #999;
+  font-size: 23px;
+  padding-bottom: 0;
+  font-weight: 300;
+}
+#menu-fixed .logo span {
+  width: 10px;
+  height: 10px;
+  backrground: #C7C7C4;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 25px;
+  transform: rotateZ(45deg);
+  -webkit-transform: rotateZ(45deg);
+  border: 8px solid white;
+  transition: all 0.2s;
+}
+#menu-fixed .logo:hover ~ p {
+  color: white;
+  transition: all 0.3s;
+}
+#menu-fixed .logo:hover > span {
+  width: 0;
+  height: 0;
+  border-left: 15px solid white;
+  border-right: 15px solid transparent;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  transition: all 0.2s;
+  transform: rotateZ(0deg) translateX(10px);
+  -webkit-transform: rotateZ(0deg) translateX(10px);
+}
+#menu-fixed .logo:hover > span::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-left: 10px solid #111;
+  border-right: 8px solid transparent;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  left: -15px;
+  position: absolute;
+  top: -8px;
+}
+#menu-fixed .pmenu {
+  margin: 0;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  font-weight: 300;
+}
+#menu-fixed hr {
+  width: 75%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+#menu-fixed .menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#menu-fixed .menu li {
+  padding: 15px;
+  width: 40%;
+  margin: auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom-style: dotted;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s;
+}
+#menu-fixed .menu li:last-child {
+  border: none;
+}
+#menu-fixed .menu li:hover {
+  background: #C7C7C4;
+  transition: all 0.3s;
+}
+#menu-fixed .menu li:hover > .material-icons {
+  color: white;
+}
+#menu-fixed .menu li .material-icons {
+  color: #C7C7C4;
+}
+#menu-fixed .menu li p {
+  display: none;
+  margin: auto;
+  color: #888;
+  font-size: 14px;
+  font-weight: 300;
+  position: absolute;
+  padding-left: 30px;
+  line-height: 30px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: sub;
+}
+
+body {
+  font-family: 'Oswald', sans-serif;
+  background: #ededed;
+  padding-top: 20px;
+}
+body h1 {
+  margin-left: 55px;
+  color: #5d8989;
+}
+body p {
+  margin-left: 55px;
+  color: #bcbaba;
+}
+body button {
+  margin-left: 55px;
+  margin-bottom: 20px;
+  color: gray;
+  opacity: 0.98;
+}
+
+.box {
+  background: #f9f9f9;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  margin-bottom: 40px;
+  margin-left: 55px;
+}
+.box h2 {
+  color: #5d8989;
+  font-size: 0.875em;
+}
+.box p {
+  font-size: 0.75em;
+  color: #7d7d7d;
+}
+
+.post img {
+  border-radius: 5px 5px 0 0;
+}
+.post .details {
+  padding: 10px 20px;
+}
+.post .details p {
+  line-height: 2.0em;
+  color: #686868;
+}
+
+    </style>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+
+<body>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<div id="cont">
+<div id="menu-fixed">
+  <a href="#cont">
+    <i class="material-icons back">&#xE314;</i>
+  </a>
+  <a href="#menu-fixed">
+    <div class="logo">
+      <span></span>   
+     
+    </div>
+  </a>
+  <hr>
+  <ul class="menu">
+    <li><i class="fa fa-home"></i><p>Home</p></li>
+    <li><i class="fa fa-globe"></i><p>Explore</p></li>
+    <li><i class="fa fa-user"></i><p>Profile</p></li>
+    <li><i class="fa fa-wrench"></i><p>Settings</p></li>
+    <li><i class="fa fa-search"></i><p>Search</p></li>
+  </ul>
+
+</div>
+</div>
+
+
+<div class="profile">
+        <img src="https://www.trickscity.com/wp-content/uploads/2017/01/Stylish-Girls-WallpapersStylish-Girls-imageStylish-Girls-pic-yanki-girl-sweet-girlsweet-kudi-normal-kudicute-punjabi-girls-in-punjabi-suits-10.jpg"  />
+      </div>
+<div="row col-md-7">
+      <div class="details">
+        <h1>@wanderlust</h1>
+        <p>designer, nyc</p>
+     <button>Follow</button>
+</div>
+
+  </div>
+          
+        
+  <div class="col_1of4">
+        <article class="box post">
+          <div class="image">
+            <img src="http://www.himalayatravel.gr/wp-content/uploads/2017/01/PARISFRANCE1.jpg" />
+           <div class="details">
+            <h2>Paris Holiday!</h2>
+            <p> 
+          <div class="planned-trip_description">
+          <span>Paris for life! Bonjour! Viva!.</span>
+             <div class="pinned-trip_itenary">
+            <span>8 </span><span>Days</span>
+            <span>78 <i class="fa fa-camera-retro"></i></span>
+            <span>20 <i class="fa fa-institution"></i></span>
+          </div>
+          </div> </p>
+          </div>
+          </div>
+      </div>
+        
+          <div class="col_2of4">
+        <article class="box post">
+          <div class="image">
+            <img src="https://brightcove04pmdo-a.akamaihd.net/5104226627001/5104226627001_5222667804001_5219436382001-vs.jpg?pubId=5104226627001&videoId=5219436382001" />
+           <div class="details">
+            <h2>Sri Lanka Vacation!</h2>
+            <p> 
+          <div class="planned-trip_description">
+          <span>Enjoy every moment in your life.</span>
+             <div class="pinned-trip_itenary">
+            <span>7 </span><span>Days</span>
+            <span>56 <i class="fa fa-camera-retro"></i></span>
+            <span>10 <i class="fa fa-institution"></i></span>
+          </div>
+          </div> </p>
+          </div>
+          </div>
+      </div>
+
+          <div class="col_3of4">
+        <article class="box post">
+          <div class="image">
+            <img src="http://2.bp.blogspot.com/-dqplgYouhrE/VnMtaLQ8KsI/AAAAAAAAEZU/JxEqkbehFfE/s1600/Narita05.jpg" />
+           <div class="details">
+            <h2>Narita History Tour!</h2>
+            <p> 
+          <div class="planned-trip_description">
+          <span>To feel the oldish heritage by your heart.</span>
+             <div class="pinned-trip_itenary">
+            <span>5 </span><span>Days</span>
+            <span>67 <i class="fa fa-camera-retro"></i></span>
+            <span>100 <i class="fa fa-institution"></i></span>
+          </div>
+          </div> </p>
+          </div>
+          </div>
+      </div>
+        
+          <div class="col_2of3">
+        <article class="box post">
+          <div class="image">
+            <img src="http://www.happytrips.com/photo/40903100.cms.cms" />
+           <div class="details">
+            <h2>Cape Town delights!</h2>
+            <p> 
+          <div class="planned-trip_description">
+          <span>Enjoy every moment in your life.</span>
+             <div class="pinned-trip_itenary">
+            <span>9 </span><span>Days</span>
+            <span>90 <i class="fa fa-camera-retro"></i></span>
+            <span>145 <i class="fa fa-institution"></i></span>
+          </div>
+          </div> </p>
+          </div>
+          </div>
+      </div>
+  
+  
+</body>
+</html>
